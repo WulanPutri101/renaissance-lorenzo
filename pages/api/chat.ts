@@ -28,11 +28,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
       },
       body: JSON.stringify({
-        model: process.env.OPENROUTER_MODEL || "deepseek/deepseek-chat",
+  model: process.env.OPENROUTER_MODEL || "deepseek/deepseek-chat",
+  messages: messages, // <--- ini penting! kirim percakapan user & asisten
+}),
 
-        // opsional: batasi max tokens jika perlu
-        // max_tokens: 512
-      }),
     });
 
     const data = await resp.json();
